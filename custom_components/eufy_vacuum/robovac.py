@@ -57,6 +57,7 @@ class CleanSpeed(StringEnum):
     NO_SUCTION = 'No_suction'
     STANDARD = 'Standard'
     BOOST_IQ = 'Boost_IQ'
+    TURBO = 'Turbo'
     MAX = 'Max'
 
 
