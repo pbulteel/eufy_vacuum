@@ -15,20 +15,34 @@ from . import robovac
 
 _LOGGER = logging.getLogger(__name__)
 
-
+"""
+Add Turbo mode, and Charging state -bhauer
+"""
+STATE_CHARGING = 'Charging'
 FAN_SPEED_OFF = 'Off'
 FAN_SPEED_STANDARD = 'Standard'
 FAN_SPEED_BOOST_IQ = 'Boost IQ'
 FAN_SPEED_MAX = 'Max'
+FAN_SPEED_TURBO = 'Turbo'
 FAN_SPEEDS = {
     robovac.CleanSpeed.NO_SUCTION: FAN_SPEED_OFF,
     robovac.CleanSpeed.STANDARD: FAN_SPEED_STANDARD,
     robovac.CleanSpeed.BOOST_IQ: FAN_SPEED_BOOST_IQ,
+    robovac.CleanSpeed.TURBO: FAN_SPEED_TURBO,
     robovac.CleanSpeed.MAX: FAN_SPEED_MAX,
 }
 
+""" Added to later support brush timing"""
+main_brush_left = '75'
 
 SUPPORT_ROBOVAC_T2118 = (
+    SUPPORT_BATTERY | SUPPORT_CLEAN_SPOT | SUPPORT_FAN_SPEED | SUPPORT_LOCATE |
+    SUPPORT_PAUSE | SUPPORT_RETURN_HOME | SUPPORT_START | SUPPORT_STATUS |
+    SUPPORT_TURN_OFF | SUPPORT_TURN_ON
+)
+
+"""Added to support the G30 Verge without needing to use the same T2118 in HA config"""
+SUPPORT_ROBOVAC_T2252 = (
     SUPPORT_BATTERY | SUPPORT_CLEAN_SPOT | SUPPORT_FAN_SPEED | SUPPORT_LOCATE |
     SUPPORT_PAUSE | SUPPORT_RETURN_HOME | SUPPORT_START | SUPPORT_STATUS |
     SUPPORT_TURN_OFF | SUPPORT_TURN_ON
@@ -37,6 +51,10 @@ SUPPORT_ROBOVAC_T2118 = (
 
 MODEL_CONFIG = {
     'T2118': {
+        'fan_speeds': FAN_SPEEDS,
+        'support': SUPPORT_ROBOVAC_T2118
+    },
+    'T2252': {
         'fan_speeds': FAN_SPEEDS,
         'support': SUPPORT_ROBOVAC_T2118
     }
@@ -110,17 +128,18 @@ class EufyVacuum(VacuumEntity):
         """Return the battery level of the vacuum cleaner."""
         return self.robovac.battery_level
 
+    """ Update to new Eufy setup, appears correct in HomeAssistant Vacuum card"""
     @property
     def status(self):
         """Return the status of the vacuum cleaner."""
-        if self.robovac.error_code != robovac.ErrorCode.NO_ERROR:
-            return STATE_ERROR
-        elif self.robovac.go_home:
+        #if self.robovac.error_code != robovac.ErrorCode.NO_ERROR:
+        #    return STATE_ERROR
+        if self.robovac.work_status == self.robovac.go_home:
             return STATE_RETURNING
         elif self.robovac.work_status == robovac.WorkStatus.RUNNING:
             return STATE_CLEANING
         elif self.robovac.work_status == robovac.WorkStatus.CHARGING:
-            return STATE_DOCKED
+            return STATE_CHARGING
         elif self.robovac.work_status == robovac.WorkStatus.RECHARGE_NEEDED:
             # Should be captured by `go_home` above, but just in case
             return STATE_RETURNING
@@ -135,7 +154,9 @@ class EufyVacuum(VacuumEntity):
     def available(self) -> bool:
         """Return True if entity is available."""
         return True
-
+    def main_brush(self):
+        """Return True if entity is available."""
+        return main_brush_left
     async def async_return_to_base(self, **kwargs):
         """Set the vacuum cleaner to return to the dock."""
         await self.robovac.async_go_home()
