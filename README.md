@@ -60,10 +60,14 @@ eufy_vacuum:
    
 **35C** T2117 
 
+---
 
-
+The ‘LocalKey’ is 16 characters long & the ‘devID’ is 21 characters long.
 
 It looks like you need an older version of the EufyHome app to be able to get the LOCAL KEY and DEVICE ID. 
+
+<Update with somewhat accurate instructions to gain the required info>
+
 
 Restart HA.
 
