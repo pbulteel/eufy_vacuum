@@ -42,21 +42,82 @@ SUPPORT_ROBOVAC_T2118 = (
 )
 
 """Added to support the G30 Verge without needing to use the same T2118 in HA config"""
+SUPPORT_ROBOVAC_T2251 = (
+    SUPPORT_BATTERY | SUPPORT_CLEAN_SPOT | SUPPORT_FAN_SPEED | SUPPORT_LOCATE |
+    SUPPORT_PAUSE | SUPPORT_RETURN_HOME | SUPPORT_START | SUPPORT_STATUS |
+    SUPPORT_TURN_OFF | SUPPORT_TURN_ON
+)
+
+""" The below needs to be updated with the actual features the vac has """
+
 SUPPORT_ROBOVAC_T2252 = (
     SUPPORT_BATTERY | SUPPORT_CLEAN_SPOT | SUPPORT_FAN_SPEED | SUPPORT_LOCATE |
     SUPPORT_PAUSE | SUPPORT_RETURN_HOME | SUPPORT_START | SUPPORT_STATUS |
     SUPPORT_TURN_OFF | SUPPORT_TURN_ON
 )
 
+SUPPORT_ROBOVAC_T2253 = (
+    SUPPORT_BATTERY | SUPPORT_CLEAN_SPOT | SUPPORT_FAN_SPEED | SUPPORT_LOCATE |
+    SUPPORT_PAUSE | SUPPORT_RETURN_HOME | SUPPORT_START | SUPPORT_STATUS |
+    SUPPORT_TURN_OFF | SUPPORT_TURN_ON
+)
+
+SUPPORT_ROBOVAC_T2123 = (
+    SUPPORT_BATTERY | SUPPORT_CLEAN_SPOT | SUPPORT_FAN_SPEED | SUPPORT_LOCATE |
+    SUPPORT_PAUSE | SUPPORT_RETURN_HOME | SUPPORT_START | SUPPORT_STATUS |
+    SUPPORT_TURN_OFF | SUPPORT_TURN_ON
+)
+
+SUPPORT_ROBOVAC_T2103 = (
+    SUPPORT_BATTERY | SUPPORT_CLEAN_SPOT | SUPPORT_FAN_SPEED | SUPPORT_LOCATE |
+    SUPPORT_PAUSE | SUPPORT_RETURN_HOME | SUPPORT_START | SUPPORT_STATUS |
+    SUPPORT_TURN_OFF | SUPPORT_TURN_ON
+)
+
+SUPPORT_ROBOVAC_T2117 = (
+    SUPPORT_BATTERY | SUPPORT_CLEAN_SPOT | SUPPORT_FAN_SPEED | SUPPORT_LOCATE |
+    SUPPORT_PAUSE | SUPPORT_RETURN_HOME | SUPPORT_START | SUPPORT_STATUS |
+    SUPPORT_TURN_OFF | SUPPORT_TURN_ON
+)
+
+ """ Got the other models from https://community.home-assistant.io/t/eufy-robovac-35c-working-with-home-assistant-updated-11-2020-how-to-guide-now-with-edge-cleaning/152690/137"""
 
 MODEL_CONFIG = {
+    """ 30C T2118 """
     'T2118': {
         'fan_speeds': FAN_SPEEDS,
         'support': SUPPORT_ROBOVAC_T2118
     },
+    """ G30 Edge T2251 """
+    'T2251': {
+        'fan_speeds': FAN_SPEEDS,
+        'support': SUPPORT_ROBOVAC_T2251
+    },
+    """ G30 Verge"""
     'T2252': {
         'fan_speeds': FAN_SPEEDS,
-        'support': SUPPORT_ROBOVAC_T2118
+        'support': SUPPORT_ROBOVAC_T2252
+    },
+    """ G30 Hybrid T2253 """
+    'T2253': {
+        'fan_speeds': FAN_SPEEDS,
+        'support': SUPPORT_ROBOVAC_T2253
+    },
+    
+    """ 25C T2123 """
+    'T2123': {
+        'fan_speeds': FAN_SPEEDS,
+        'support': SUPPORT_ROBOVAC_T2123
+    },
+    """ 11C T2103 """
+    'T2103': {
+        'fan_speeds': FAN_SPEEDS,
+        'support': SUPPORT_ROBOVAC_T2103
+    },
+    """35C T2117 """
+    'T2117': {
+        'fan_speeds': FAN_SPEEDS,
+        'support': SUPPORT_ROBOVAC_T2117
     }
 }
 
