@@ -46,6 +46,8 @@ eufy_vacuum:
     type: MODEL CODE (Below)
 ```
 
+**Available Model Codes:**
+
 **30C** T2118 
 
 **G30 Edge** T2251 
