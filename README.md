@@ -112,6 +112,8 @@ It looks like you need an older version of the EufyHome app to be able to get th
 Yes, you must Restart HA to get the config in place.
   
   
+ Once comfirmed good, **UNINSTALL THE APP**, its useless to use, and a security issue. If you need the key again, just do the process over, it takes a few minutes.
+  
 
 ## Using Manual Process
 
