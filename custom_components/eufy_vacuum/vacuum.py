@@ -80,7 +80,6 @@ SUPPORT_ROBOVAC_T2117 = (
     SUPPORT_TURN_OFF | SUPPORT_TURN_ON
 )
 
- """ Got the other models from https://community.home-assistant.io/t/eufy-robovac-35c-working-with-home-assistant-updated-11-2020-how-to-guide-now-with-edge-cleaning/152690/137"""
 
 MODEL_CONFIG = {
     """ 30C T2118 """
