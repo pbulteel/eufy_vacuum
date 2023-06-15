@@ -1,4 +1,7 @@
 # Eufy Robovac control for Python
+Archiving as there's a better implementation
+
+https://github.com/bmccluskey/robovac
 
 Work in progress! This is a fork of a fork. 
 
